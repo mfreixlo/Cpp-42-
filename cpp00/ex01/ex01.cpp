@@ -1,9 +1,17 @@
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
+#include "PhoneBook.h"
+
+std::string truncate(std::string str)
+{
+    if (str.length() > 9)
+        return str.substr(0, 9) + ".";
+    return str;
+}
 
 //reads the contact fields from terminal
-void read_contact_fields(std::string cont_fields[5])
+int read_contact_fields(std::string cont_fields[5])
 {
+    int i = -1;
+
     std::cout << "first name: ";
     getline(std::cin, cont_fields[0]);
     std::cout << "last name: ";
@@ -14,46 +22,50 @@ void read_contact_fields(std::string cont_fields[5])
     getline(std::cin, cont_fields[3]);
     std::cout << "darkest secret: ";
     getline(std::cin, cont_fields[4]);
+    while (++i < 5)
+    {
+        if (cont_fields[i].empty())
+            return (0);
+    }
+    return (1);
 }
 
-Contact new_contact(std::string cont_fields[5])
+int get_index(int phbook_size)
 {
-    Contact new_contact;
+    std::string line;
+    int         index;
 
-    new_contact.first_name = cont_fields[0];
-    new_contact.last_name = cont_fields[1];
-    new_contact.nickname = cont_fields[2];
-    new_contact.number = cont_fields[3];
-    new_contact.darkest_secret = cont_fields[4];
-
-    return (new_contact);
+    getline(std::cin, line);
+    try
+    {
+        index = std::stoi(line);
+    }
+    catch (std::exception &err)
+    {
+        std::cout << "That is NOT a valid number...\n\n";
+        return (-1);
+    }
+    if (index > phbook_size || index < 0)
+    {
+        std::cout << "WRONG INDEX...\n\n";
+        return (-1);
+    }
+    return (index);
 }
 
-Contact add_contact(void)
-{
-    std::string cont_fields[5];
-    int i = 0;
-    read_contact_fields(cont_fields);
-    
-}
-
-void search_contact(void)
-{
-    printf("oioi1\n");
-}
 
 int main() {
-    PhoneBook my_phbk;  // Create an object of PhoneBook class
-
+    PhoneBook   my_phbk;
     std::string cmd;
+
     while (cmd.compare("EXIT"))
     {
-        std::cout << "Do you want to ADD or SEARCH a contact or EXIT?" << "\n>> ";
+        std::cout << "Do you want to ADD/SEARCH a contact or EXIT?" << "\n>> ";
         getline(std::cin, cmd);
         if (!cmd.compare("ADD"))
-            add_contact();
+            my_phbk.add_contact();
         else if (!cmd.compare("SEARCH"))
-            search_contact();
+            my_phbk.print_phonebook();
         else   
             continue;
     }

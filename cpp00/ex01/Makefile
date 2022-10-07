@@ -1,4 +1,4 @@
-SRC = ex01.cpp
+SRC = ex01.cpp Contact.cpp PhoneBook.cpp
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror
