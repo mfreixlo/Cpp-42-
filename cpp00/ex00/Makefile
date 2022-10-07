@@ -1,4 +1,4 @@
-SRC = ex00.cpp
+SRC = megaphone.cpp
 
 CC = g++
 
