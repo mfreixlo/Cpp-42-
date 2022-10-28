@@ -8,6 +8,6 @@
 
 std::string truncate(std::string str);
 int         read_contact_fields(std::string cont_fields[5]);
-int         get_index(int phbook_size)
+int         get_index(int phbook_size);
 
 #endif /* _PHONEBOOK_H_ */

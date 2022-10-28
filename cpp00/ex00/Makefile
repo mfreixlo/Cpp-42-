@@ -12,4 +12,6 @@ all: $(MEGA)
 clean:
 	$(RM) $(MEGA)
 
+fclean: clean
+
 re: clean all
