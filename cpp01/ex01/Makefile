@@ -2,6 +2,8 @@ SRC = main.cpp zombieHorde.cpp Zombie.cpp
 
 CC = g++
 
+FLAGS = -g 
+
 ZOMBIEHORDE = zombieHorde
 
 $(ZOMBIEHORDE):

@@ -1,12 +1,9 @@
 #include "Zombie.hpp"
 
-
 Zombie::Zombie(void)
 {
     name = "";
 }
-
-Zombie &operator = (Zombie const)
 
 Zombie::Zombie(std::string new_name)
 {
